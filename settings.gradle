@@ -2,3 +2,4 @@ rootProject.name = 'no-sql'
 
 include "mongo-db-core-java"
 include "redis-core-java"
+include "couch-base-spring-boot2-data"

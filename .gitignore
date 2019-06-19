@@ -73,3 +73,8 @@ folder1
 *.MF
 *.zip
 taskArtifacts
+.idea
+/.idea/
+/.idea/*
+*/out/*
+/out/*
