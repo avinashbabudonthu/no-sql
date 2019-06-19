@@ -36,10 +36,10 @@ jar{
     baseName = "couch-base-spring-boot2-data"
 }
 
-configurations.all{
+/*configurations.all{
     exclude group:"ch.qos.logback", module: "logback-classic"
     exclude group:"ch.qos.logback", module: "logback-core"
-}
+}*/
 
 dependencies{
     compile "org.springframework.boot:spring-boot-starter-web"
