@@ -11,7 +11,7 @@ subprojects{
 
     dependencies{
         compile "junit:junit:4.12"
-		compileOnly "org.projectlombok:lombok:1.18.6"
+		compile "org.projectlombok:lombok:1.18.6"
     }
 }
 
