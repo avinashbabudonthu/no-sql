@@ -1,3 +1,0 @@
-Start mongo db database -> location-to-mongo-db-bin>mongod.exe
-
-Start mongo console to execute queries -> location-to-mongo-db-bin>mongo.exe
