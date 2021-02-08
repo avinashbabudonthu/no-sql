@@ -19,6 +19,14 @@ location-to-mongo-db-bin>mongo.exe
 ![picture](pictures/database-categories.jpg)
 * Specifics\
 ![picture](pictures/specifics-database-categories.jpg)
+* Sql vs NoSql\
+![picture](pictures/sql-vs-no-sql.jpg)
+* Sql ACID properties\
+![picture](pictures/sql-acid-properties.jpg)
+* NoSql BASE property\
+![picture](pictures/no-sql-base-property.jpg)
+* Every NoSql works on `CAP` theory
+![picture](pictures/no-sql-cap-theory.jpg)
 
 # Basics
 * Schema less
