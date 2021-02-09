@@ -44,4 +44,7 @@ location-to-mongo-db-bin>mongo.exe
 	* Neo4J
 * Scaling
 	* Horizontal scaling
+		* What's the main difference? 
+			* Horizontal scaling means scaling by adding more machines to your pool of resources (also described as `scaling out`)
+			* Vertical scaling means scaling by adding more power (e.g. CPU, RAM) to an existing machine (also described as `scaling up`)
 	* Supports distributed by default
