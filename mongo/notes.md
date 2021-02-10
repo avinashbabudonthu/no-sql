@@ -38,8 +38,8 @@ location-to-mongo-db-bin>mongo.exe
 ![picture](pictures/specifics-database-categories.jpg)
 * Sql vs NoSql
 	* Vertical scaling vs Horizontal scaling
-			* Horizontal scaling means scaling by adding more machines to your pool of resources (also described as `scaling out`)
-			* Vertical scaling means scaling by adding more power (e.g. CPU, RAM) to an existing machine (also described as `scaling up`)\
+		* Horizontal scaling means scaling by adding more machines to your pool of resources (also described as `scaling out`)
+		* Vertical scaling means scaling by adding more power (e.g. CPU, RAM) to an existing machine (also described as `scaling up`)\
 ![picture](pictures/sql-vs-no-sql.jpg)
 * Sql ACID properties\
 ![picture](pictures/sql-acid-properties.jpg)
@@ -94,7 +94,7 @@ location-to-mongo-db-bin>mongo.exe
 	* Tabular
 	* Graph\
 ![picture](pictures/categories.jpg)
-* Examples of categories
+* Examples of categories\
 ![picture](pictures/categories-examples.jpg)
 * Horizontal Scaling
 * Supports distributed by default
