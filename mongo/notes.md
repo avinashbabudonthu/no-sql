@@ -15,7 +15,19 @@ location-to-mongo-db-bin>mongo.exe
 ```
 
 # Database categories
-* High level view\
+* High level view
+	* OLTP (RDBMS) - Real Time Storage
+		* Oracle
+		* SQL Server
+		* MySQL
+	* NoSql
+		* MongoDB
+		* Cassandra
+		* HBase
+		* Neo4J
+		* Couchbase
+		* Redis
+		* Elastic Search\
 ![picture](pictures/database-categories.jpg)
 * Specifics\
 ![picture](pictures/specifics-database-categories.jpg)
@@ -37,11 +49,6 @@ location-to-mongo-db-bin>mongo.exe
 	* Key-Value
 	* Tabular
 	* Graph
-* Examples
-	* MongoDB
-	* Cassandra
-	* HBase
-	* Neo4J
 * Scaling
 	* Horizontal scaling
 		* What's the main difference? 
