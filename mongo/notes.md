@@ -1,23 +1,3 @@
-# Install MongoDB
-* Download mongo db from - https://www.mongodb.com/try/download/community
-	* Select appropriate `version`, `platform`, `package`
-	* Prefer downloading `zip`
-	* Click `Download` button
-* Unzip if zip is downloaded
-* Install if msi is downloaded
-* Start mongo db database
-```
-location-to-mongo-db-bin>mongod.exe
-```
-* Start mongo console to execute queries
-```
-location-to-mongo-db-bin>mongo.exe
-```
-
-# Mongo GUI Clients
-* [RoboMongo](https://robomongo.org/download)
-* [NoSqlClient](https://github.com/nosqlclient/nosqlclient/releases)
-
 # Database categories
 * High level view
 	* OLTP (RDBMS) - Real Time Storage
@@ -77,9 +57,9 @@ location-to-mongo-db-bin>mongo.exe
 		* Unstructured
 		* Text
 		* Key-Value
-		* Graph
 		* Documented
 		* Columnar
+		* Graph
 * Veracity
 	* Data in doubt
 		* Uncertainity due to latency, ambiguity etc
@@ -89,8 +69,10 @@ location-to-mongo-db-bin>mongo.exe
 * Dynamic schema
 * Most of NoSqls are open source
 * Multiple categories
-	* Document
+	* Text
 	* Key-Value
+	* Document
+	* Columnar
 	* Tabular
 	* Graph\
 ![picture](pictures/categories.jpg)
@@ -155,6 +137,51 @@ location-to-mongo-db-bin>mongo.exe
 * JSON Vs BSON
 ![picture](pictures/json-vs-bson.jpg)
 
+# Install MongoDB
+* Download mongo db from - https://www.mongodb.com/try/download/community
+	* Select appropriate `version`, `platform`, `package`
+	* Prefer downloading `zip`
+	* Click `Download` button
+* Unzip if zip is downloaded
+* Install if msi is downloaded
+* Start mongo db database
+```
+location-to-mongo-db-bin>mongod.exe
+```
+* Start mongo console to execute queries
+```
+location-to-mongo-db-bin>mongo.exe
+```
+
+# Mongo GUI Clients
+* [RoboMongo](https://robomongo.org/download)
+* [NoSqlClient](https://github.com/nosqlclient/nosqlclient/releases)
+
+# Setup NoSqlClient
+* Extract zip downloaded using above link
+* Click `Nosqlclient.exe`
+* Click `Connect` on top right corner\
+![picture](pictures/no-sql-client-1.jpg)
+* Click `Create New` button\
+![picture](pictures/no-sql-client-2.jpg)
+* Enter following details to connect to admin db\
+![picture](pictures/no-sql-client-3.jpg)
+* Enter following details to connect to specific db. In this case I am connecting to `mycart` db\
+![picture](pictures/no-sql-client-4.jpg)
+* Click `Save changes` button
+* Select connection details, click `Connect Now`\
+![picture](pictures/no-sql-client-5.jpg)
+* setup `mongo.exe` path to execute commands
+	* Tools
+	* Shell
+	* `More` on top right corner
+	* Settings
+	* Give path to `bin` where `mongo.exe` is present\
+![picture](pictures/no-sql-client-6.jpg)
+* Click `Save`
+* Now we can execute commands from Shell\
+![picture](pictures/no-sql-client-7.jpg)
+
 # Mongo Commands
 * Exit mongo client `mongo.exe`
 ```
@@ -162,10 +189,10 @@ exit
 ```
 * Show DBs
 ```
-show dbs;
-show databases;
+show dbs
+show databases
 ```
 * Use specific database
 ```
-use database-name;
+use database-name
 ```
