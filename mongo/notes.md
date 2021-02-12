@@ -5,6 +5,7 @@
 		* SQL Server
 		* MySQL
 		* Postgre Sql
+		* IBM DB2
 	* NoSql
 		* MongoDB
 		* Cassandra
@@ -33,6 +34,26 @@
 ![picture](pictures/cap-combinations.jpg)
 * CAP combinations with NoSql DBs\
 ![picture](pictures/cap-combinations-2.jpg)
+
+# Limitations of RDBMS
+* Scalability
+	* Vertical scaling by increasing CPU capacity. What if we reach the state that we cannot increase anymore?
+* Data complexity
+	* Can save only structured data
+	* What about files like music files, xml, images, FB likes etc
+* Broken keys
+	* If connection of PK-FK fails then connectivity of data is lost
+* Define schema before loading data to database
+
+# Why NoSql
+* Non-relations
+* Distributed database
+* No schema required
+* Auto elasticity
+* Integrated caching
+* Simpler data model
+* High Availability
+* Speed
 
 # Features of NoSql Database
 * Supports high volume of transactions - tens of thousands to millions
@@ -65,21 +86,44 @@
 		* Uncertainity due to latency, ambiguity etc
 
 # Nosql Notes
+* Form of database management system that is non-relational
+* First coined in 1998 by Carlo Strozzi
+* Data is more complex
+* Many NoSql database categories
+* Uses APIs or query languages to modify data
 * Schema less
 * Dynamic schema
 * Most of NoSqls are open source
 * Multiple categories
 	* Text
 	* Key-Value
+		* Redis
+		* MemcacheD
 	* Document
+		* MongoDB
+		* Couchbase
 	* Columnar
+		* Cassandra
+		* HBase
 	* Tabular
-	* Graph\
+	* Graph
+		* OreintDB
+		* Neo4J\
 ![picture](pictures/categories.jpg)
 * Examples of categories\
 ![picture](pictures/categories-examples.jpg)
 * Horizontal Scaling
 * Supports distributed by default
+* No joins in most of the NoSql databases
+
+# Document based database
+* Deep nesting and complex structures
+* Document within document
+
+# Key value database
+* Key and values
+* No structured. No relation
+* Used to store basic information after processing the data (like for caching)
 
 # MongoDB Notes
 * Open source document based database
@@ -94,6 +138,7 @@
 * Reasons to use mongo
 ![picture](pictures/mongo-reason-to-use.jpg)
 ![picture](pictures/mongo-reason-to-use-2.jpg)
+* Queries focused on collection of documents
 
 ## Advantages
 * Schema less document based database
