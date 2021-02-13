@@ -148,6 +148,23 @@
 * Single instance of mongodb can hold multiple independent databases. Each database with it's own collection
 * Every document has special key `_id`. This is unique to collection
 * Supports `Javascript shell`
+* Data types
+	* Data types by JSON
+		* null
+		* boolean
+		* string
+		* numeric
+		* array
+		* object
+	* Data types from mongo
+		* Date: `new Date()`
+		* Regex
+		* Embedded document: document within a document. Document becomes the value.
+		* ObjectId: 12 byte of storage
+		* Binary data
+		* Code
+* `_id` is of type `ObjectId`
+* `_id` is unique to each document. Like primary key in RDBMS
 
 # Which features mongo ignore for scalability
 * indexes
@@ -168,6 +185,7 @@
 * Capped collections
 	* Fixed size
 	* Old records get dropped after reaching the limit
+
 
 # Document
 * Every document has special key `_id`. This is unique to collection. Works like a primary key
@@ -207,7 +225,7 @@
 # JSON And BSON
 * JSON\
 ![picture](pictures/json.jpg)
-* BSON\
+* BSON - Binary Script Object Notation\
 ![picture](pictures/bson.jpg)
 * BSON features
 	* Lightweight
@@ -358,6 +376,19 @@ db.person.drop()
 db.emp.insert({"name": "john", "age": 21, "dept": "accounts"})
 db.emp.save({"name": "john", "age": 21, "dept": "accounts"})
 ```
+* Insert multiple documents to collection `emp`
+```
+db.emp.insert([
+{
+    "name": "jane",
+    "age": 23
+},
+{
+    "name": "smith",
+    "age": 24
+}
+])
+```
 * List of documents in collection `emp`
 ```
 db.emp.find()
@@ -367,7 +398,20 @@ db.emp.find()
 db.emp.find( {"name": jack} )
 db.emp.find( {"name": "jack"} )
 ```
-* Remove document. remove document - name == jack
+* Remove all documents in collection `emp`
+```
+db.emp.remove({})
+```
+* Remove document. remove document where name == jack
+	* Once removed there is no way to rollback or recover removed document
 ```
 db.emp.remove({name: "jack"})
+```
+* Update single document. Set age to 25 where age is 24
+```
+db.emp.update({"age": 24}, {$set: {"age": 25}})
+```
+* Update multiple documents. Set age to 25 where age is 24
+```
+db.emp.update({"age": 25}, {$set: {"name": "new name"}}, {"multi": true})
 ```
