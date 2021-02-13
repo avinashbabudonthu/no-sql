@@ -139,8 +139,45 @@
 ![picture](pictures/mongo-reason-to-use.jpg)
 ![picture](pictures/mongo-reason-to-use-2.jpg)
 * Queries focused on collection of documents
+* We can have embedded documents
+* Document key-values are `not fixed`
+* RDBMS replacement for web applications
+* Real time analytics
+* High speed logging
+* Caching and high scalability
+* Single instance of mongodb can hold multiple independent databases. Each database with it's own collection
+* Every document has special key `_id`. This is unique to collection
+* Supports `Javascript shell`
 
-## Advantages
+# Which features mongo ignore for scalability
+* indexes
+* joins
+* transactions across documents
+* storage
+
+# Database
+* Made up of multiple collections
+* Created `on-the-fly` when referenced first time
+
+# Collection
+* Similar to table
+* Schema less
+* Group of documents
+* Indexed by one or more keys
+* Created `on-the-fly` when referenced first time
+* Capped collections
+	* Fixed size
+	* Old records get dropped after reaching the limit
+
+# Document
+* Every document has special key `_id`. This is unique to collection. Works like a primary key
+* Every document will have key and associated values
+* JSON format
+* Stored in collection
+* Supports relationships by Embedded (or) References
+* Document storage as `BSON - Binary form of JSON`
+
+# Advantages
 * Schema less document based database
 * Supports dynamic queries on documents
 * Does not require complex joins
@@ -149,7 +186,7 @@
 * Mapping of application objects to database object is not needed
 * Easy to tune for performance
 
-## Tools Terminologies
+# Tools Terminologies
 * Mongo database `MongoD`
 	* Physical container for collections
 	* Each database get it's own files on file system
@@ -167,7 +204,7 @@
 * Mongo Tools\
 ![picture](pictures/mongo-tools.jpg)
 
-## JSON And BSON
+# JSON And BSON
 * JSON\
 ![picture](pictures/json.jpg)
 * BSON\
@@ -198,9 +235,31 @@ location-to-mongo-db-bin>mongod.exe
 location-to-mongo-db-bin>mongo.exe
 ```
 
+# Setup
+* Go to extracted folder of mongodb
+* Create file named `mongo.config`
+	* Created in path `C:\mongo\config`
+* Add below content to `mongo.config.txt`
+	* logappend = true
+		* so that log is not overwritten upon restart of mongod instance
+```
+bind ip = 127.0.0.1
+port = 27017
+quiet = true
+dbpath = C:\mongodb\data\db
+logpath = C:\mongodb\log\mongodb.log
+logappend = true
+```
+* Save the file
+* Run mongodb with config
+```
+mongod.exe --config="C:\mongo\config\mongo.config"
+```
+
 # Mongo GUI Clients
 * [RoboMongo](https://robomongo.org/download)
 * [NoSqlClient](https://github.com/nosqlclient/nosqlclient/releases)
+* Mongochef
 
 # Setup NoSqlClient
 * Extract zip downloaded using above link
@@ -228,9 +287,33 @@ location-to-mongo-db-bin>mongo.exe
 ![picture](pictures/no-sql-client-7.jpg)
 
 # Mongo Commands
-* Exit mongo client `mongo.exe`
+* Run mongodb
 ```
-exit
+mongod.exe
+```
+* Run mongodb by giving db path
+```
+mongod.exe --dbpath C:\mongodb\data\db
+```
+* Run mongodb with config. refer [setup](#setup) for config file
+```
+mongod.exe --config="C:\mongo\config\mongo.config"
+```
+* Help
+```
+help
+```
+* Run mongo shell
+```
+mongo.exe
+```
+* Clean mongo shell
+```
+cls
+```
+* Exit mongo shell
+```
+exit 
 ```
 * Show DBs
 ```
@@ -238,6 +321,63 @@ show dbs
 show databases
 ```
 * Use specific database
+	* syntax
 ```
-use database-name
+use <database-name>
+```
+	* example - use `office` database
+```
+use office
+```
+* Show collections
+```
+show collections
+```
+* Show users
+```
+show users
+```
+* Create collection
+	* Basic syntax
+```
+use office
+db.createCollection("emp")
+show collections
+```
+	* With few options
+```
+use office
+db.createCollection("emp", { capped: true, autoIndexID: true, size: 6142800, max: 100000 })
+```
+	* In mongo db we don't need to create collection. Mongodb creates collection automatically when we insert document
+```
+db.emp.insert({"name": "jack"})
+```
+* Drop/delete collection
+	* syntax
+```
+db.collection-name.drop()
+```
+	* example - drop `person` collection
+```
+db.person.drop()
+```
+* Insert document to collection `emp`
+```
+db.emp.insert({"name": "john", "age": 21, "dept": "accounts"})
+db.emp.save({"name": "john", "age": 21, "dept": "accounts"})
+```
+* List of documents in collection `emp`
+```
+db.emp.find()
+```
+* List of documents in emp where `name == jack`
+```
+db.emp.find( {"name": jack} )
+db.emp.find( {"name": "jack"} )
+```
+* Remove document
+	* remove document - name == jack
+```
+db.emp.remove({name: "jack"})
 ```
