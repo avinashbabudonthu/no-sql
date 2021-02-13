@@ -395,7 +395,7 @@ db.emp.find()
 ```
 * List of documents in emp where `name == jack`
 ```
-db.emp.find( {"name": jack} )
+db.emp.find( {name: "jack"} )
 db.emp.find( {"name": "jack"} )
 ```
 * Remove all documents in collection `emp`
