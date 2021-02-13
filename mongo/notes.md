@@ -321,12 +321,8 @@ show dbs
 show databases
 ```
 * Use specific database
-	* syntax
 ```
 use <database-name>
-```
-	* example - use `office` database
-```
 use office
 ```
 * Show collections
@@ -337,29 +333,24 @@ show collections
 ```
 show users
 ```
-* Create collection
-	* Basic syntax
+* Create collection - Basic syntax
 ```
 use office
 db.createCollection("emp")
 show collections
 ```
-	* With few options
+* Create collection - With few options
 ```
 use office
 db.createCollection("emp", { capped: true, autoIndexID: true, size: 6142800, max: 100000 })
 ```
-	* In mongo db we don't need to create collection. Mongodb creates collection automatically when we insert document
+* Create collection - In mongo db we don't need to create collection. Mongodb creates collection automatically when we insert document
 ```
 db.emp.insert({"name": "jack"})
 ```
 * Drop/delete collection
-	* syntax
 ```
 db.collection-name.drop()
-```
-	* example - drop `person` collection
-```
 db.person.drop()
 ```
 * Insert document to collection `emp`
@@ -376,8 +367,7 @@ db.emp.find()
 db.emp.find( {"name": jack} )
 db.emp.find( {"name": "jack"} )
 ```
-* Remove document
-	* remove document - name == jack
+* Remove document. remove document - name == jack
 ```
 db.emp.remove({name: "jack"})
 ```
