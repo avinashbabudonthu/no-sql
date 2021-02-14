@@ -8,11 +8,11 @@
 		* IBM DB2
 	* NoSql
 		* MongoDB
+		* Redis
 		* Cassandra
+		* Couchbase
 		* HBase
 		* Neo4J
-		* Couchbase
-		* Redis
 		* Elastic Search\
 ![picture](pictures/database-categories.jpg)
 * Specifics\
@@ -152,8 +152,8 @@
 	* Data types by JSON
 		* null
 		* boolean
-		* string
 		* numeric
+		* string
 		* array
 		* object
 	* Data types from mongo
@@ -165,44 +165,6 @@
 		* Code
 * `_id` is of type `ObjectId`
 * `_id` is unique to each document. Like primary key in RDBMS
-
-# Which features mongo ignore for scalability
-* indexes
-* joins
-* transactions across documents
-* storage
-
-# Database
-* Made up of multiple collections
-* Created `on-the-fly` when referenced first time
-
-# Collection
-* Similar to table
-* Schema less
-* Group of documents
-* Indexed by one or more keys
-* Created `on-the-fly` when referenced first time
-* Capped collections
-	* Fixed size
-	* Old records get dropped after reaching the limit
-
-
-# Document
-* Every document has special key `_id`. This is unique to collection. Works like a primary key
-* Every document will have key and associated values
-* JSON format
-* Stored in collection
-* Supports relationships by Embedded (or) References
-* Document storage as `BSON - Binary form of JSON`
-
-# Advantages
-* Schema less document based database
-* Supports dynamic queries on documents
-* Does not require complex joins
-* Easy to scale
-* Enable faster access of data by using internal memory
-* Mapping of application objects to database object is not needed
-* Easy to tune for performance
 
 # Tools Terminologies
 * Mongo database `MongoD`
@@ -236,6 +198,44 @@
 		* Encoding/decoding data to/from BSON can be performed quickly
 * JSON Vs BSON
 ![picture](pictures/json-vs-bson.jpg)
+
+# Which features mongo ignore for scalability
+* indexes
+* joins
+* transactions across documents
+* storage
+
+# Database
+* Made up of multiple collections
+* Created `on-the-fly` when referenced first time
+
+# Collection
+* Similar to table
+* Schema less
+* Group of documents
+* Indexed by one or more keys
+* Created `on-the-fly` when referenced first time
+* Capped collections
+	* Fixed size
+	* Old records get dropped after reaching the limit
+
+# Document
+* Similar to row in table
+* Every document has special key `_id`. This is unique to collection. Works like a primary key
+* Every document will have key and associated values
+* JSON format
+* Stored in collection
+* Supports relationships by Embedded (or) References
+* Document storage as `BSON - Binary form of JSON`
+
+# Advantages
+* Schema less document based database
+* Supports dynamic queries on documents
+* Does not require complex joins
+* Easy to scale
+* Enable faster access of data by using internal memory
+* Mapping of application objects to database object is not needed
+* Easy to tune for performance
 
 # Install MongoDB
 * Download mongo db from - https://www.mongodb.com/try/download/community
@@ -375,6 +375,12 @@ db.person.drop()
 ```
 db.emp.insert({"name": "john", "age": 21, "dept": "accounts"})
 db.emp.save({"name": "john", "age": 21, "dept": "accounts"})
+
+db.emp.insert({
+"firstName": "jack", "lastName": "a", "age": 25, 
+"contactNumbers": [1234567890, 0987654321], 
+"address": {"hno": "1-2-3", "street": "test-street", "district": "test-district", "state": "test-state", "country": "test-countrye"}
+})
 ```
 * Insert multiple documents to collection `emp`
 ```
@@ -398,6 +404,12 @@ db.emp.find()
 db.emp.find( {name: "jack"} )
 db.emp.find( {"name": "jack"} )
 ```
+* Find document by id
+```
+db.emp.find({"_id": ObjectId("6028904d453eab070f119249")})
+db.emp.find(ObjectId("6028904d453eab070f119249"))
+db.emp.findOne("6028904d453eab070f119249")
+```
 * Remove all documents in collection `emp`
 ```
 db.emp.remove({})
@@ -414,4 +426,48 @@ db.emp.update({"age": 24}, {$set: {"age": 25}})
 * Update multiple documents. Set age to 25 where age is 24
 ```
 db.emp.update({"age": 25}, {$set: {"name": "new name"}}, {"multi": true})
+```
+* Update nested key's value
+```
+db.emp.insert({
+ "firstName": "jack", "lastName": "a", "age": 25, "contactNumbers": [1234567890, 0987654321], 
+ "address": {"hno": "1-2-3", "street": "test-street", "district": "test-district", "state": "test-state", "country": "test-countrye"}
+})
+
+db.emp.update({"age": 25}, {$set: {"address.hno": "7-8-9"}})
+```
+* Remove key in existing document(s). Remove `hno` key in the last
+```
+{
+    "_id" : ObjectId("60288cb4453eab070f119248"),
+    "firstName" : "jack",
+    "lastName" : "a",
+    "age" : 25.0,
+    "contactNumbers" : [ 
+        1234567890.0, 
+        987654321.0
+    ],
+    "address" : {
+        "hno" : "7-8-9",
+        "street" : "test-street",
+        "district" : "test-district",
+        "state" : "test-state",
+        "country" : "test-countrye"
+    },
+    "hno" : "7-8-9"
+}
+
+db.emp.update({"age": 25}, {$unset: {hno: 1}} )
+```
+* Remove key in multiple documents where age == 25
+```
+db.emp.update({"age": 25}, {$unset: {"hno": 1}}, {"multi": true} )
+db.emp.updateMany({"age": 25}, {$unset: {hno: 1}} )
+db.emp.update({"age": 25}, {$unset: {hno: 1}}, false, true ) //The last true is for multiple documents update
+```
+* Remove key in all documents
+```
+db.emp.update({}, {$unset: {"hno": 1}}, {"multi": true} )
+db.emp.updateMany({}, {$unset: {hno: 1}} )
+db.emp.update({}, {$unset: {hno: 1}}, false, true ) //The last true is for multiple documents update
 ```
